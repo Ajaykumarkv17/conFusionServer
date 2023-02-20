@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const Promotions = require('../models/promotions');
-
+const authenticate=require('../authenticate');
 
 const promoRouter = express.Router();
 
