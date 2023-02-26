@@ -18,6 +18,7 @@ var config = require('./config');
 const mongoose = require('mongoose');
 
 
+
 const Dishes = require('./models/dishes');
 
 var passport = require('passport');
@@ -33,6 +34,15 @@ connect.then((db)=>{
 }
 );
 var app = express();
+
+app.all('*',(req,res,next)=>{
+  if(req.secure){
+    return next();
+  }
+  else{
+    res.redirect('https://'+req.hostname+":"+app.get('secport')+req.url);
+  }
+})
 
 
 app.set('views', path.join(__dirname, 'views'));
